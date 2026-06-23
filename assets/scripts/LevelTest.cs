@@ -30,15 +30,21 @@ public partial class LevelTest : Node2D
 	{
 
 		int[,] mapData = readBitMapData(filename);
-		for (int x = 0; x < mapData.GetLength(0); x++)
+
+		for (int x = 0; x < levelWidth; x++)
 		{
-			for (int y= 0; y < mapData.GetLength(1); y++)
+			for (int y= 0; y < levelHeight; y++)
 			{
 				//x and y are switched on purpose here, idk why it has to be this way, but it works
 				int tileId = (mapData[x,y] == 1) ? 0 : -1;
 				tileMap.SetCell(new Vector2I(x, y), tileId, new Vector2I(0,0));
 			}
 		}
+
+		//update camera limits
+		Camera2D camera = (Camera2D)GetNode("../").FindChild("Camera2D");
+		camera.LimitRight = levelWidth*100;
+		camera.LimitBottom = levelHeight*100;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

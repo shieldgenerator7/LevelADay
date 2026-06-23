@@ -87,4 +87,4 @@ zoom = Vector2(1.5, 1.5)
 limit_left = 0
 limit_top = 0
 limit_right = 10000
-limit_bottom = 720
+limit_bottom = 10000
