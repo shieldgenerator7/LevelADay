@@ -46,6 +46,11 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
+		
+		//Change direction
+		if (direction.X != 0){
+			animatedSprite2D.FlipH = direction.X < 0;
+		}
 
 		Velocity = velocity;
 		MoveAndSlide();
