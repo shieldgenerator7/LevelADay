@@ -7,6 +7,8 @@ public partial class Player : CharacterBody2D
 	
 	[Export]
 	public AnimatedSprite2D animatedSprite2D {get; set;}
+	[Export]
+	public AudioStreamPlayer2D jumpSound {get; set;}
 	
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -850.0f;
@@ -34,6 +36,7 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+			jumpSound.Play();
 		}
 
 		// Get the input direction and handle the movement/deceleration.

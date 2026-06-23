@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cbmigduuvmbh8" path="res://assets/scripts/Player.cs" id="1_14505"]
 [ext_resource type="Texture2D" uid="uid://deice36a7342m" path="res://assets/images/player/player_walk.png" id="1_rwm0n"]
 [ext_resource type="Texture2D" uid="uid://bh0an12ce20w6" path="res://assets/images/player/player0003.png" id="2_s027a"]
+[ext_resource type="AudioStream" uid="uid://dh1iq5pdaoelp" path="res://assets/sounds/player_jump.wav" id="4_4wcc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s027a"]
 atlas = ExtResource("1_rwm0n")
@@ -63,9 +64,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxxk"]
 size = Vector2(45, 96)
 
-[node name="Player" type="CharacterBody2D" unique_id=1586479815 node_paths=PackedStringArray("animatedSprite2D")]
+[node name="Player" type="CharacterBody2D" unique_id=1586479815 node_paths=PackedStringArray("animatedSprite2D", "jumpSound")]
 script = ExtResource("1_14505")
 animatedSprite2D = NodePath("Animator")
+jumpSound = NodePath("jumpSound")
 
 [node name="Animator" type="AnimatedSprite2D" parent="." unique_id=1311785250]
 texture_filter = 1
@@ -76,3 +78,6 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1987129522]
 position = Vector2(-3.5, 2)
 shape = SubResource("RectangleShape2D_lkxxk")
+
+[node name="jumpSound" type="AudioStreamPlayer2D" parent="." unique_id=718392512]
+stream = ExtResource("4_4wcc8")
