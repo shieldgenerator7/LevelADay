@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://caknfkici8arg" path="res://assets/scenes/player.tscn" id="1_mr7gh"]
 [ext_resource type="Texture2D" uid="uid://d3a26rkrau33q" path="res://icon.svg" id="2_kpi06"]
+[ext_resource type="PackedScene" uid="uid://cxsv7awjmt4n7" path="res://assets/scenes/Level_Test.tscn" id="3_dfgan"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxxk"]
 size = Vector2(128, 128)
@@ -20,3 +21,5 @@ texture = ExtResource("2_kpi06")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=998531763]
 shape = SubResource("RectangleShape2D_lkxxk")
+
+[node name="LevelRoot" parent="." unique_id=936590086 instance=ExtResource("3_dfgan")]
