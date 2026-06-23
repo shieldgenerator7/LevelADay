@@ -68,6 +68,7 @@ size = Vector2(45, 96)
 script = ExtResource("1_14505")
 animatedSprite2D = NodePath("Animator")
 jumpSound = NodePath("jumpSound")
+JumpVelocity = -1000.0
 
 [node name="Animator" type="AnimatedSprite2D" parent="." unique_id=1311785250]
 texture_filter = 1

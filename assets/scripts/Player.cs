@@ -10,8 +10,10 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public AudioStreamPlayer2D jumpSound {get; set;}
 	
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -1600.0f;
+	[Export]
+	public float Speed = 300.0f;
+	[Export]
+	public float JumpVelocity = -1600.0f;
 
 	public override void _PhysicsProcess(double delta)
 	{
