@@ -63,14 +63,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxxk"]
 size = Vector2(45, 96)
 
-[node name="Player" type="CharacterBody2D" unique_id=1586479815]
+[node name="Player" type="CharacterBody2D" unique_id=1586479815 node_paths=PackedStringArray("animatedSprite2D")]
 script = ExtResource("1_14505")
+animatedSprite2D = NodePath("Animator")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1311785250]
+[node name="Animator" type="AnimatedSprite2D" parent="." unique_id=1311785250]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lkxxk")
-animation = &"walk"
-autoplay = "walk"
+animation = &"jump"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1987129522]
 position = Vector2(-3.5, 2)
