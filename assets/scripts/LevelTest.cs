@@ -12,6 +12,9 @@ public partial class LevelTest : Node2D
 	public string filename;
 
 	[Export]
+	public string levelFolder;
+
+	[Export]
 	public TileMapLayer tileMap;
 
 
@@ -63,7 +66,7 @@ public partial class LevelTest : Node2D
 		//TODO: check to make sure file is bitmap
 		//Bitmap bmp = new Bitmap();
 		int[,] mapData = new int[100, 100];
-		Image bmp = Image.LoadFromFile(filename);
+		Image bmp = Image.LoadFromFile(Path.Combine("res://",levelFolder, filename));
 
 		
 

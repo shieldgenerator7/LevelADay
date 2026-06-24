@@ -17,7 +17,8 @@ sources/0 = SubResource("TileSetAtlasSource_uy103")
 
 [node name="LevelRoot" type="Node2D" unique_id=936590086 node_paths=PackedStringArray("tileMap")]
 script = ExtResource("1_wihrq")
-filename = "levels/level0.bmp"
+filename = "level0.bmp"
+levelFolder = "levels"
 tileMap = NodePath("TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1311906674]
