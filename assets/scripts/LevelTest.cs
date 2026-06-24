@@ -36,6 +36,7 @@ public partial class LevelTest : Node2D
 		levelList = getLevelList();
 
 		RandomNumberGenerator rng = new RandomNumberGenerator();
+		rng.Seed = (ulong)System.DateTime.Now.Ticks;
 		int index = rng.RandiRange(0, levelList.Length-1);
 		string levelName = levelList[index];
 
