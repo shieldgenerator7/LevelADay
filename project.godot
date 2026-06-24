@@ -26,6 +26,12 @@ window/stretch/aspect="expand"
 
 project/assembly_name="LevelADay"
 
+[importer_defaults]
+
+animation_library={
+&"animation/fps": 12.0
+}
+
 [input]
 
 left={
