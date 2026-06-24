@@ -35,7 +35,9 @@ public partial class LevelTest : Node2D
 	{
 		levelList = getLevelList();
 
-		string levelName = levelList[0];
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int index = rng.RandiRange(0, levelList.Length-1);
+		string levelName = levelList[index];
 
 		int[,] mapData = readBitMapData($"{levelName}.bmp");
 
@@ -99,6 +101,9 @@ public partial class LevelTest : Node2D
 	{
 		//TODO: check for levels in the folder that are not in the file
 		string text = File.ReadAllText(Path.Combine(levelFolder, "levels.txt"));
-		return text.Split("\n");
+		return text.Split("\n").ToList()
+			.FindAll(t=>!String.IsNullOrEmpty(t))
+			.ConvertAll(t=>t.Trim())
+			.ToArray();
 	}
 }
