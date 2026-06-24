@@ -27,12 +27,17 @@ public partial class LevelTest : Node2D
 	private int levelWidth = 0;
 	private int levelHeight = 0;
 
+	private string[] levelList;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		levelList = getLevelList();
 
-		int[,] mapData = readBitMapData(filename);
+		string levelName = levelList[0];
+
+		int[,] mapData = readBitMapData($"{levelName}.bmp");
 
 		for (int x = 0; x < levelWidth; x++)
 		{
@@ -88,5 +93,12 @@ public partial class LevelTest : Node2D
 		}
 
 		return mapData;
+	}
+
+	public string[] getLevelList()
+	{
+		//TODO: check for levels in the folder that are not in the file
+		string text = File.ReadAllText(Path.Combine(levelFolder, "levels.txt"));
+		return text.Split("\n");
 	}
 }
