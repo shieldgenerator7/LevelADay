@@ -11,3 +11,4 @@ position = Vector2(498, 249)
 [node name="LevelManager" type="Node2D" parent="." unique_id=1173086998]
 script = ExtResource("3_sfrgt")
 fileNameLevelPrefab = "assets/scenes/Level_Test.tscn"
+levelSelectFileName = "level.txt"
