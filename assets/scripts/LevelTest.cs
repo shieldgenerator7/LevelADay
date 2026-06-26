@@ -88,17 +88,6 @@ public partial class LevelTest : Node2D
 		camera.LimitRight = levelWidth*100;
 		camera.LimitBottom = levelHeight*100;
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
-	private int[,] getMapData()
-	{
-		int[,] mapData = new int[3, 3] { { 1, 1, 1 }, { 1, 0, 0 }, { 0, 1, 0 } };
-		return mapData;
-	}
 	
 	private int[,] readBitMapData(string filename)
 	{
@@ -127,34 +116,6 @@ public partial class LevelTest : Node2D
 		}
 
 		return mapData;
-	}
-
-	public Vector2I getLevelGridPosFromId(int id)
-	{
-		//TODO: make it expand infinitely in all directions evenly, or at least in two directions infinitely evenly
-
-		return new Vector2I(
-			id % 4,
-			(int)MathF.Floor(id / 4)
-			);
-	}
-
-	public int getLevelIdFromGridPos(Vector2I v)
-	{
-		//TODO: make it expand infinitely in all directions evenly, or at least in two directions infinitely evenly
-		//note: pos with x >= 4 will have duplicates with this current method, it needs improved
-
-		return  (v.Y * 4) + v.X;
-	}
-
-	public string[] getLevelList()
-	{
-		//TODO: check for levels in the folder that are not in the file
-		string text = File.ReadAllText(Path.Combine(levelFolder, "levels.txt"));
-		return text.Split("\n").ToList()
-			.FindAll(t=>!String.IsNullOrEmpty(t))
-			.ConvertAll(t=>t.Trim())
-			.ToArray();
 	}
 
 	public bool doesLevelExist(string levelName)
