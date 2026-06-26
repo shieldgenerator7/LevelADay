@@ -68,6 +68,8 @@ public partial class LevelTest : Node2D
 			LevelGridPosition = new Vector2I(0, 0);
 		}
 
+		if (doesLevelExist(LevelName))
+		{
 		int[,] mapData = readBitMapData(fileNameLevel);
 
 		for (int x = 0; x < levelWidth; x++)
@@ -78,6 +80,7 @@ public partial class LevelTest : Node2D
 				int tileId = (mapData[x,y] == 1) ? 0 : -1;
 				tileMap.SetCell(new Vector2I(x, y), tileId, new Vector2I(0,0));
 			}
+		}
 		}
 
 		//update camera limits
@@ -134,5 +137,18 @@ public partial class LevelTest : Node2D
 			.FindAll(t=>!String.IsNullOrEmpty(t))
 			.ConvertAll(t=>t.Trim())
 			.ToArray();
+	}
+
+	public bool doesLevelExist(string levelName)
+	{
+		string[] filenameList = new string[]
+		{
+			fileNameLevel,
+			fileNameBackground,
+			fileNameForeground,
+			fileNameText,
+			fileNameSettings,
+		};
+		return filenameList.Any(fileName => !String.IsNullOrWhiteSpace(fileName) && File.Exists(Path.Combine(levelFolder, fileName)));
 	}
 }
