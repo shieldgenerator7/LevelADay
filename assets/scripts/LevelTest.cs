@@ -129,6 +129,24 @@ public partial class LevelTest : Node2D
 		return mapData;
 	}
 
+	public Vector2I getLevelGridPosFromId(int id)
+	{
+		//TODO: make it expand infinitely in all directions evenly, or at least in two directions infinitely evenly
+
+		return new Vector2I(
+			id % 4,
+			(int)MathF.Floor(id / 4)
+			);
+	}
+
+	public int getLevelIdFromGridPos(Vector2I v)
+	{
+		//TODO: make it expand infinitely in all directions evenly, or at least in two directions infinitely evenly
+		//note: pos with x >= 4 will have duplicates with this current method, it needs improved
+
+		return  (v.Y * 4) + v.X;
+	}
+
 	public string[] getLevelList()
 	{
 		//TODO: check for levels in the folder that are not in the file
