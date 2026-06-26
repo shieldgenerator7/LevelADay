@@ -8,14 +8,44 @@ using System.Linq;
 
 public partial class LevelTest : Node2D
 {
-	[Export]
-	public string filename;
 
 	[Export]
 	public string levelFolder;
 
 	[Export]
 	public TileMapLayer tileMap;
+
+
+	private string _levelName;
+	public string LevelName
+	{
+		get => _levelName;
+		set
+		{
+			_levelName = value;
+			fileNameLevel = $"{_levelName}.bmp";
+			fileNameBackground = $"{_levelName}.png";
+			fileNameForeground = $"{_levelName}.jpg";
+			fileNameText = $"{_levelName}.txt";
+			fileNameSettings = $"{_levelName}.json";
+		}
+	}
+	private string fileNameLevel;
+	private string fileNameBackground;
+	private string fileNameForeground;
+	private string fileNameText;
+	private string fileNameSettings;
+
+	private Vector2I _levelGridPos = new Vector2I();
+	public Vector2I LevelGridPosition
+	{
+		get => _levelGridPos;
+		set
+		{
+			_levelGridPos = value;
+			LevelName = String.Concat(_levelGridPos.X, "_", _levelGridPos.Y);
+		}
+	}
 
 
 	public Dictionary<string, int> pixelKeyMap = new Dictionary<string, int>
@@ -33,14 +63,12 @@ public partial class LevelTest : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		levelList = getLevelList();
+		if (String.IsNullOrWhiteSpace(_levelName))
+		{
+			LevelGridPosition = new Vector2I(0, 0);
+		}
 
-		RandomNumberGenerator rng = new RandomNumberGenerator();
-		rng.Seed = (ulong)System.DateTime.Now.Ticks;
-		int index = rng.RandiRange(0, levelList.Length-1);
-		string levelName = levelList[index];
-
-		int[,] mapData = readBitMapData($"{levelName}.bmp");
+		int[,] mapData = readBitMapData(fileNameLevel);
 
 		for (int x = 0; x < levelWidth; x++)
 		{
