@@ -60,8 +60,7 @@ public partial class LevelTest : Node2D
 	private string[] levelList;
 
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public void Initialize()
 	{
 		if (String.IsNullOrWhiteSpace(_levelName))
 		{
