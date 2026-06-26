@@ -75,7 +75,6 @@ public partial class LevelTest : Node2D
 		{
 			for (int y= 0; y < levelHeight; y++)
 			{
-				//x and y are switched on purpose here, idk why it has to be this way, but it works
 				int tileId = (mapData[x,y] == 1) ? 0 : -1;
 				tileMap.SetCell(new Vector2I(x, y), tileId, new Vector2I(0,0));
 			}
@@ -91,7 +90,6 @@ public partial class LevelTest : Node2D
 	private int[,] readBitMapData(string filename)
 	{
 		//TODO: check to make sure file is bitmap
-		//Bitmap bmp = new Bitmap();
 		int[,] mapData = new int[100, 100];
 		Image bmp = Image.LoadFromFile(Path.Combine("res://",levelFolder, filename));
 
@@ -107,10 +105,7 @@ public partial class LevelTest : Node2D
 			{
 				Color pixelColor = bmp.GetPixel(x, y);
 				string pixelKey = String.Concat((int)pixelColor.R*255, "_", (int)pixelColor.G*255, "_", (int)pixelColor.B*255);
-				GD.Print(pixelKey);
 				mapData[x, y] = pixelKeyMap[pixelKey];
-				//List<int> a = new List<int>();
-				//a.Any(x=>x>0);
 			}
 		}
 
