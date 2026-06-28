@@ -2,6 +2,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class Player : CharacterBody2D
 {
 	
