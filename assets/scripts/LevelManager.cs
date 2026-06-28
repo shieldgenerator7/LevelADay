@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 public partial class LevelManager : Node2D
 {
@@ -28,17 +29,29 @@ public partial class LevelManager : Node2D
 
 		Node2D levelNode = (Node2D)GD.Load<PackedScene>(Path.Combine("res://", fileNameLevelPrefab)).Instantiate();
 		AddChild(levelNode);
-		levelNode.Position = new Vector2(levelGridPos.X * 100, levelGridPos.Y * 100);
+		levelNode.Position = new Vector2(levelGridPos.X * 100 * 100, levelGridPos.Y * 100 * 100);
 
 		LevelTest level = (LevelTest)levelNode;
 		level.LevelGridPosition = levelGridPos;
 		level.Initialize();
 
-		level.levelCenterArea.AreaExited += checkLoadLevel;
-		level.levelWholeArea.AreaEntered += setCurrentLevel;
+		level.LevelEntered += (l, b) =>
+		{
+			if (b == explorer)
+			{
+				setCurrentLevel(l);
+			}
+		};
+		level.LevelEdged += (l, b) =>
+		{
+			if (b == explorer)
+			{
+				checkLoadLevel(l);
+			}
+		};
 
+		
 		GD.Print($"Loaded level: {levelGridPos}");
-
 		return level;
 	}
 
@@ -63,45 +76,34 @@ public partial class LevelManager : Node2D
 		UpdateCamera(currentLevel);
 	}
 
-	private void setCurrentLevel(Area2D area)
+	private void setCurrentLevel(LevelTest level)
 	{
-		currentLevel = area.GetParent<LevelTest>();
+		GD.Print($"Entered level: {level.LevelGridPosition}");
+		currentLevel = level;
 		currentLevelGridPos = currentLevel.LevelGridPosition;
 		UpdateCamera(currentLevel);
 	}
 
-	private void checkLoadLevel(Area2D area)
+	private void checkLoadLevel(LevelTest level)
 	{
+		Vector2I gridPos = level.LevelGridPosition;
 		List<Vector2I> levelsToLoad = new List<Vector2I>();
-		if (explorer.Position.X < area.Position.X)
+
+		for (int x = -1; x <= 1; x++)
 		{
-			levelsToLoad.Add(new Vector2I(
-				currentLevelGridPos.X - 1,
-				currentLevelGridPos.Y
-				));
-		}
-		if (explorer.Position.X > area.Position.X)
-		{
-			levelsToLoad.Add(new Vector2I(
-				currentLevelGridPos.X + 1,
-				currentLevelGridPos.Y
-				));
-		}
-		if (explorer.Position.Y < area.Position.Y)
-		{
-			levelsToLoad.Add(new Vector2I(
-				currentLevelGridPos.X,
-				currentLevelGridPos.Y - 1
-				));
-		}
-		if (explorer.Position.Y > area.Position.Y)
-		{
-			levelsToLoad.Add(new Vector2I(
-				currentLevelGridPos.X,
-				currentLevelGridPos.Y + 1
-				));
+			for (int y = -1; y <= 1; y++)
+			{
+				if (!(x == 0 || y == 0)) continue;
+				Vector2I v = new Vector2I(
+					gridPos.X + x,
+					gridPos.Y + y
+				);
+				if (loadedLevels.Contains(v)) continue;
+				levelsToLoad.Add(v);
+			}
 		}
 
+		GD.Print("Loading levels: " + levelsToLoad.Aggregate("",(bas, v)=>bas+v+", "));
 		levelsToLoad.ForEach(checkLoadLevel);
 	}
 	private void checkLoadLevel(Vector2I levelGridPos)

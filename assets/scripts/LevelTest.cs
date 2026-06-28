@@ -85,7 +85,18 @@ public partial class LevelTest : Node2D
                 }
             }
         }
+
+        levelWholeArea.BodyEntered += (body) =>
+        {
+            LevelEntered(this, body);
+        };
+        levelCenterArea.BodyExited += (body) =>
+        {
+            LevelEdged(this, body);
+        };
     }
+    public event Action<LevelTest, Node2D> LevelEntered;
+    public event Action<LevelTest, Node2D> LevelEdged;
 
     private int[,] readBitMapData(string filename)
     {
