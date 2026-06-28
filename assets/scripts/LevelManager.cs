@@ -116,9 +116,14 @@ public partial class LevelManager : Node2D
 
 	private void UpdateCamera(LevelTest level)
 	{
-        //update camera limits
-        camera.LimitRight = level.levelWidth * 100;
-        camera.LimitBottom = level.levelHeight * 100;
+		//update camera limits
+		camera.LimitLeft = level.LevelGridPosition.X * 100 * 100;
+		camera.LimitTop = level.LevelGridPosition.Y * 100 * 100;
+        camera.LimitRight = camera.LimitLeft + level.levelWidth * 100;
+		camera.LimitBottom = camera.LimitTop + level.levelHeight * 100;
+
+		//unlimit camera if the level is empty
+		camera.LimitEnabled = level.levelWidth > 0 && level.levelHeight > 0;
     }
 
 }
