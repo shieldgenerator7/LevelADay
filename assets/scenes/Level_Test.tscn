@@ -16,6 +16,9 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uy103")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c31l"]
+size = Vector2(9300, 9300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxxk"]
 size = Vector2(10000, 10000)
 
 [node name="LevelRoot" type="Node2D" unique_id=936590086 node_paths=PackedStringArray("tileMap", "levelCenterArea", "levelWholeArea")]
@@ -41,8 +44,8 @@ stretch_mode = 1
 position = Vector2(5000, 5000)
 shape = SubResource("RectangleShape2D_7c31l")
 
-[node name="LevelWhole" type="Area2D" parent="." unique_id=493638846]
+[node name="LevelWhole" type="Area2D" parent="." unique_id=2099972832]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelWhole" unique_id=1098869083]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelWhole" unique_id=2071086784]
 position = Vector2(5000, 5000)
-shape = SubResource("RectangleShape2D_7c31l")
+shape = SubResource("RectangleShape2D_lkxxk")

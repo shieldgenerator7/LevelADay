@@ -99,7 +99,7 @@ public partial class LevelManager : Node2D
 				));
 		}
 
-		levelsToLoad.ForEach(v => checkLoadLevel(v));
+		levelsToLoad.ForEach(checkLoadLevel);
 	}
 	private void checkLoadLevel(Vector2I levelGridPos)
 	{
