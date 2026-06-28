@@ -14,6 +14,9 @@ public partial class LevelManager : Node2D
 	[Export]
 	public Node2D explorer;
 
+	[Export]
+	public Camera2D camera;
+
 	private Vector2I currentLevelGridPos = new Vector2I(0, 0);
 	private LevelTest currentLevel;
 
@@ -57,14 +60,14 @@ public partial class LevelManager : Node2D
 		//initialize current level
 		currentLevelGridPos = v;
 		currentLevel = LoadLevel(currentLevelGridPos);
-		currentLevel.GrabCamera();
+		UpdateCamera(currentLevel);
 	}
 
 	private void setCurrentLevel(Area2D area)
 	{
 		currentLevel = area.GetParent<LevelTest>();
 		currentLevelGridPos = currentLevel.LevelGridPosition;
-		currentLevel.GrabCamera();
+		UpdateCamera(currentLevel);
 	}
 
 	private void checkLoadLevel(Area2D area)
@@ -108,5 +111,12 @@ public partial class LevelManager : Node2D
 			LoadLevel(levelGridPos);
 		}
 	}
+
+	private void UpdateCamera(LevelTest level)
+	{
+        //update camera limits
+        camera.LimitRight = level.levelWidth * 100;
+        camera.LimitBottom = level.levelHeight * 100;
+    }
 
 }

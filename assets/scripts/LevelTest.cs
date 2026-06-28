@@ -59,8 +59,8 @@ public partial class LevelTest : Node2D
 		{"255_255_255", 1 },//white = block
 	};
 
-    private int levelWidth = 0;
-    private int levelHeight = 0;
+    public int levelWidth { get; private set; }
+    public int levelHeight { get; private set; }
 
     private string[] levelList;
 
@@ -85,14 +85,6 @@ public partial class LevelTest : Node2D
                 }
             }
         }
-    }
-
-    public void GrabCamera()
-    {   
-        //update camera limits
-        Camera2D camera = (Camera2D)GetNode("../").FindChild("Camera2D");
-        camera.LimitRight = levelWidth * 100;
-        camera.LimitBottom = levelHeight * 100;
     }
 
     private int[,] readBitMapData(string filename)
