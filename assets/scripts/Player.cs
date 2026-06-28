@@ -5,12 +5,12 @@ using System;
 [GlobalClass]
 public partial class Player : CharacterBody2D
 {
-	
+
 	[Export]
-	public AnimatedSprite2D animatedSprite2D {get; set;}
+	public AnimatedSprite2D animatedSprite2D { get; set; }
 	[Export]
-	public AudioStreamPlayer2D jumpSound {get; set;}
-	
+	public AudioStreamPlayer2D jumpSound { get; set; }
+
 	[Export]
 	public float Speed = 300.0f;
 	[Export]
@@ -19,12 +19,14 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-		
+
 		// Add animation
-		if (velocity.X > 1 || velocity.X < -1){
+		if (velocity.X > 1 || velocity.X < -1)
+		{
 			animatedSprite2D.Animation = "walk";
 		}
-		else{
+		else
+		{
 			animatedSprite2D.Animation = "idle";
 		}
 
@@ -52,9 +54,10 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
-		
+
 		//Change direction
-		if (direction.X != 0){
+		if (direction.X != 0)
+		{
 			animatedSprite2D.FlipH = direction.X < 0;
 		}
 
