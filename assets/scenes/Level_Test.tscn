@@ -15,11 +15,15 @@ tile_size = Vector2i(100, 100)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uy103")
 
-[node name="LevelRoot" type="Node2D" unique_id=936590086 node_paths=PackedStringArray("tileMap")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c31l"]
+size = Vector2(10000, 10000)
+
+[node name="LevelRoot" type="Node2D" unique_id=936590086 node_paths=PackedStringArray("tileMap", "levelCenterArea", "levelWholeArea")]
 script = ExtResource("1_wihrq")
-filename = "level0.bmp"
 levelFolder = "levels"
 tileMap = NodePath("TileMapLayer")
+levelCenterArea = NodePath("LevelCenter")
+levelWholeArea = NodePath("LevelWhole")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1311906674]
 tile_set = SubResource("TileSet_lkxxk")
@@ -30,3 +34,15 @@ offset_right = 10000.0
 offset_bottom = 10000.0
 texture = ExtResource("2_uy103")
 stretch_mode = 1
+
+[node name="LevelCenter" type="Area2D" parent="." unique_id=1917915848]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCenter" unique_id=335379749]
+position = Vector2(5000, 5000)
+shape = SubResource("RectangleShape2D_7c31l")
+
+[node name="LevelWhole" type="Area2D" parent="." unique_id=493638846]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelWhole" unique_id=1098869083]
+position = Vector2(5000, 5000)
+shape = SubResource("RectangleShape2D_7c31l")

@@ -15,6 +15,11 @@ public partial class LevelTest : Node2D
     [Export]
     public TileMapLayer tileMap;
 
+    [Export]
+    public Area2D levelCenterArea;
+    [Export]
+    public Area2D levelWholeArea;
+
 
     private string _levelName;
     public string LevelName
@@ -80,7 +85,10 @@ public partial class LevelTest : Node2D
                 }
             }
         }
+    }
 
+    public void GrabCamera()
+    {   
         //update camera limits
         Camera2D camera = (Camera2D)GetNode("../").FindChild("Camera2D");
         camera.LimitRight = levelWidth * 100;
