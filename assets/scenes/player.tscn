@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxxk"]
-size = Vector2(45, 96)
+size = Vector2(45, 67)
 
 [node name="Player" type="CharacterBody2D" unique_id=1586479815 node_paths=PackedStringArray("animatedSprite2D", "jumpSound")]
 script = ExtResource("1_14505")
@@ -77,7 +77,7 @@ animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1987129522]
-position = Vector2(-3.5, 2)
+position = Vector2(-3.5, 16.5)
 shape = SubResource("RectangleShape2D_lkxxk")
 
 [node name="jumpSound" type="AudioStreamPlayer2D" parent="." unique_id=718392512]

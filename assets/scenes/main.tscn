@@ -7,6 +7,7 @@
 
 [node name="Player" parent="." unique_id=1586479815 instance=ExtResource("1_mr7gh")]
 position = Vector2(498, 249)
+JumpVelocity = -2000.0
 
 [node name="LevelManager" type="Node2D" parent="." unique_id=1173086998 node_paths=PackedStringArray("explorer")]
 script = ExtResource("3_sfrgt")

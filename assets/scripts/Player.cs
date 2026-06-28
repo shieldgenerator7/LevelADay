@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float Speed = 300.0f;
 	[Export]
-	public float JumpVelocity = -1600.0f;
+	public float JumpVelocity = 0;
 
 	public override void _PhysicsProcess(double delta)
 	{
