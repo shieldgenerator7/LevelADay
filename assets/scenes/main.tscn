@@ -15,9 +15,11 @@ limit_top = 0
 limit_right = 10000
 limit_bottom = 10000
 
-[node name="LevelManager" type="Node2D" parent="." unique_id=1173086998 node_paths=PackedStringArray("explorer", "camera")]
+[node name="LevelManager" type="Node2D" parent="." unique_id=1173086998 node_paths=PackedStringArray("explorer", "camera", "player")]
 script = ExtResource("3_sfrgt")
 fileNameLevelPrefab = "assets/scenes/Level_Test.tscn"
 levelSelectFileName = "level.txt"
 explorer = NodePath("../Player")
 camera = NodePath("../Player/Camera2D2")
+player = NodePath("../Player")
+playerStartOffset = Vector2(200, 900)

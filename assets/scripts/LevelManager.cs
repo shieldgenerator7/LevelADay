@@ -18,6 +18,11 @@ public partial class LevelManager : Node2D
 	[Export]
 	public Camera2D camera;
 
+	[Export]
+	public Player player;
+	[Export]
+	public Vector2 playerStartOffset;
+
 	private Vector2I currentLevelGridPos = new Vector2I(0, 0);
 	private LevelTest currentLevel;
 
@@ -74,6 +79,12 @@ public partial class LevelManager : Node2D
 		currentLevelGridPos = v;
 		currentLevel = LoadLevel(currentLevelGridPos);
 		UpdateCamera(currentLevel);
+
+		//place player
+		player.Position = new Vector2(
+			currentLevelGridPos.X * 100 * 100 + playerStartOffset.X,
+			currentLevelGridPos.Y * 100 * 100 + playerStartOffset.Y
+			);
 	}
 
 	private void setCurrentLevel(LevelTest level)
@@ -124,6 +135,15 @@ public partial class LevelManager : Node2D
 
 		//unlimit camera if the level is empty
 		camera.LimitEnabled = level.levelWidth > 0 && level.levelHeight > 0;
+	}
+
+    public override void _ExitTree()
+    {
+		string path = Path.Combine("levels", levelSelectFileName);
+
+		//save out current position
+		File.WriteAllText(path, $"{currentLevelGridPos.X}_{currentLevelGridPos.Y}");//"0_0"
     }
+
 
 }
