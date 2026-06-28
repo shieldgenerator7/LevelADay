@@ -55,7 +55,7 @@ public partial class LevelManager : Node2D
 			}
 		};
 
-		
+
 		GD.Print($"Loaded level: {levelGridPos}");
 		return level;
 	}
@@ -114,7 +114,7 @@ public partial class LevelManager : Node2D
 			}
 		}
 
-		GD.Print("Loading levels: " + levelsToLoad.Aggregate("",(bas, v)=>bas+v+", "));
+		GD.Print("Loading levels: " + levelsToLoad.Aggregate("", (bas, v) => bas + v + ", "));
 		levelsToLoad.ForEach(checkLoadLevel);
 	}
 	private void checkLoadLevel(Vector2I levelGridPos)
@@ -130,20 +130,20 @@ public partial class LevelManager : Node2D
 		//update camera limits
 		camera.LimitLeft = level.LevelGridPosition.X * 100 * 100;
 		camera.LimitTop = level.LevelGridPosition.Y * 100 * 100;
-        camera.LimitRight = camera.LimitLeft + level.levelWidth * 100;
+		camera.LimitRight = camera.LimitLeft + level.levelWidth * 100;
 		camera.LimitBottom = camera.LimitTop + level.levelHeight * 100;
 
 		//unlimit camera if the level is empty
 		camera.LimitEnabled = level.levelWidth > 0 && level.levelHeight > 0;
 	}
 
-    public override void _ExitTree()
-    {
+	public override void _ExitTree()
+	{
 		string path = Path.Combine("levels", levelSelectFileName);
 
 		//save out current position
 		File.WriteAllText(path, $"{currentLevelGridPos.X}_{currentLevelGridPos.Y}");//"0_0"
-    }
+	}
 
 
 }
